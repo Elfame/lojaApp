@@ -69,9 +69,7 @@ class OrderTile extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: [
                 FlatButton(
-                  onPressed: (){
-                    
-                  },
+                  onPressed: order.cancel,
                   textColor: Colors.red,
                   child: const Text('Cancelar'),
                 ),
