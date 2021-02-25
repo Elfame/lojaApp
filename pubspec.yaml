@@ -44,6 +44,9 @@ dependencies:
   brasil_fields: ^0.1.0
   geolocator: ^6.2.1
   sliding_up_panel: ^1.0.2
+  screenshot: ^0.1.1
+  gallery_saver: ^2.0.1
+  open_file: ^3.0.1
 
 
 
