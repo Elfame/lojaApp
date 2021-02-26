@@ -14,7 +14,7 @@ import 'package:uuid/uuid.dart';
 
 class Product extends ChangeNotifier {
 
-  Product({this.id,this.name,this.description,this.images,this.sizes}){
+  Product({this.id,this.name,this.description,this.images,this.sizes,this.deleted = false}){
     images = images ?? [];
     sizes = sizes ?? [];
 
@@ -27,6 +27,7 @@ class Product extends ChangeNotifier {
     images = List<String>.from(document.data ['images'] as List<dynamic>);// convertendo lista de String pare dynamic
     sizes = (document.data ['sizes'] as List<dynamic> ?? []).map(
             (s) => ItemSize.fromMap(s as Map <String, dynamic>)).toList();
+    deleted = (document.data['deleted '] ?? false ) as bool;
 
     correios = (document.data ['correios'] as List<dynamic> ?? []).map((c) => CorreiosSize.fromMap(c as Map <String , dynamic>)).toList();
 
@@ -50,6 +51,8 @@ class Product extends ChangeNotifier {
 
 
   List<dynamic> newImages;
+
+  bool deleted;
 
  // variavel usada para testar loading
   bool _loading = false;
@@ -115,7 +118,8 @@ class Product extends ChangeNotifier {
     final Map<String, dynamic> data = {
       'name': name,
       'description': description,
-      'sizes': exportSizeList()
+      'sizes': exportSizeList(),
+      'deleted': deleted
 
     };
 
@@ -157,7 +161,7 @@ class Product extends ChangeNotifier {
     }
 
     for(final image in images){
-      if(!newImages.contains(image)){
+      if(!newImages.contains(image) &&image.contains('firebase')){
         try {
           final ref = await storage.getReferenceFromUrl(image);
           await ref.delete();
@@ -179,6 +183,10 @@ class Product extends ChangeNotifier {
 
   }
 
+  void delete(){
+    firestoreRef.updateData({'deleted':true});
+  }
+
   Product clone(){
     return Product(
       id: id,
@@ -186,6 +194,7 @@ class Product extends ChangeNotifier {
       description: description,
       images: List.from(images),
       sizes: sizes.map((size) => size.clone()).toList(),
+      deleted: deleted,
 
 
     );
