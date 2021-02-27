@@ -1,7 +1,6 @@
-import 'package:lojavirtual/models/product.dart';
-import 'package:lojavirtual/models/product_manager.dart';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 
 class DeletarProduto extends StatelessWidget {
@@ -26,9 +25,7 @@ class DeletarProduto extends StatelessWidget {
           onPressed: (){
             // corrigir
            //context.read<ProductManager>().delete(product);
-            Navigator.of(context).pop();
-
-
+           //Navigator.of(context).pop();
           },
         )
       ],

@@ -99,15 +99,8 @@ Map<String, dynamic> toCartItemMap(){
       'quantity': quantity,
       'size': size,
       'fixedPrice': fixedPrice ?? unitPrice,
-
-
     };
-
   }
-
-
-
-
 
    bool stacKable(Product product){
 
@@ -125,6 +118,7 @@ void decrement(){
 }
 
   bool get hasStock{
+    if(product != null && product.deleted) return false;
     final size = itemSize;
     if(size == null) return false;
     return size.stock >= quantity;

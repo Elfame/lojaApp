@@ -5,7 +5,6 @@ import 'package:lojavirtual/screen/edit_product/components/images_form.dart';
 import 'package:lojavirtual/screen/edit_product/components/sizes_form.dart';
 import 'package:provider/provider.dart';
 
-import 'deletar_produto.dart';
 
 class EditProductScreen extends StatelessWidget {
 
@@ -30,19 +29,13 @@ class EditProductScreen extends StatelessWidget {
           title:  Text(editing? 'Editar Produto' : 'Criar Produto',style: TextStyle(
           ),),
           centerTitle: true,
-          actions: [
+          actions: <Widget>[
             if(editing)
               IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: (){
-              //showDialog(context: context,
-              //builder: (_) => DeletarProduto(product));
-                  /*Criei uma chamada para um alart Dialog. tudo funcinou perfeitamente prorem não consigo utilizar
-                  o código a baixo pois não consigo encontrar  o valar da variavel product. a classe para dar o Alertdiolog se chama deletar_pedroduto
-                   */
-              context.read<ProductManager>().delete(product);
-              Navigator.of(context).pop();
-
+                  context.read<ProductManager>().delete(product);
+                  Navigator.of(context).pop();
                 },
               )
           ],

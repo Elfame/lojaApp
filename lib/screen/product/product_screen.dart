@@ -156,18 +156,9 @@ class ProductScreen extends StatelessWidget {
 
                   ),
                   const SizedBox(height: 20,),
-
-
-
                   if (product.hasStock)
-
-
-
-
-
                   Consumer2<UserManager, Product>(
                     builder: (_, userManager,product,__){
-
                       return SizedBox(height: 44,
                       child: RaisedButton(
                         onPressed: product.selectedSize != null ? (){
@@ -180,9 +171,6 @@ class ProductScreen extends StatelessWidget {
 
                             Navigator.of(context).pushNamed('/login');
                           }
-
-
-
                         } : null,
                         color: primaryColor,
                         textColor: Colors.white,

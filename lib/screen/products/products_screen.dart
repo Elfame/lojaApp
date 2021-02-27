@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 
 import 'components/search_dialog.dart';
 
-
 class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -47,11 +46,7 @@ class ProductScreen extends StatelessWidget {
 
                 },
 
-
-
               );
-
-
             }
 
           },
@@ -87,12 +82,9 @@ class ProductScreen extends StatelessWidget {
 
 
               );
-
             }
 
-
           },
-
 
 
         ),
@@ -149,7 +141,6 @@ class ProductScreen extends StatelessWidget {
         foregroundColor: Theme.of(context).primaryColor ,
         onPressed: (){
           Navigator.of(context).pushNamed('/cart');
-
 
         },
         child: Icon(Icons.shopping_cart),

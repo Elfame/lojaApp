@@ -24,11 +24,11 @@ class Product extends ChangeNotifier {
     id = document.documentID;
     name = document['name'] as String;
     description = document['description'] as String;
-    images = List<String>.from(document.data ['images'] as List<dynamic>);// convertendo lista de String pare dynamic
+    images = List<String>.from(document.data ['images'] as List<dynamic>);
+    deleted = (document.data['deleted '] ?? false ) as bool;
+    // convertendo lista de String pare dynamic
     sizes = (document.data ['sizes'] as List<dynamic> ?? []).map(
             (s) => ItemSize.fromMap(s as Map <String, dynamic>)).toList();
-    deleted = (document.data['deleted '] ?? false ) as bool;
-
     correios = (document.data ['correios'] as List<dynamic> ?? []).map((c) => CorreiosSize.fromMap(c as Map <String , dynamic>)).toList();
 
 
@@ -84,7 +84,7 @@ class Product extends ChangeNotifier {
   }
 
   bool get hasStock{
-    return totalStock >  0;
+    return totalStock >0 && !deleted;
   }
 
   num get basePrice{
@@ -92,7 +92,7 @@ class Product extends ChangeNotifier {
 
     num lowest = double.infinity;
     for(final size in sizes){
-      if(size.price < lowest && size.hassStock)
+      if(size.price < lowest)
         lowest = size.price;
 
     }
@@ -184,7 +184,7 @@ class Product extends ChangeNotifier {
   }
 
   void delete(){
-    firestoreRef.updateData({'deleted':true});
+    firestoreRef.updateData({'deleted': true});
   }
 
   Product clone(){
